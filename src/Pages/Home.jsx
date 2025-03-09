@@ -7,6 +7,7 @@ import PSLogo from "../assets/ps.png";
 import Course from "../Components/Course.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 function Home() {
   const [coursesList, setCoursesList] = useState([
     { name: "CPP", groups: [], logo: CPPLogo },
@@ -14,22 +15,25 @@ function Home() {
     { name: "Python", groups: [], logo: PYLogo },
     { name: "PS", groups: [], logo: PSLogo },
   ]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(function () {
+  useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(
           "https://api.180daraga.com/api/events/startcourse/7-12/groups/"
         );
-        const NewGroups = response.data.message;
-        setCoursesList((prevCourses) =>
-          prevCourses.map((course) => ({
+        const newGroups = response.data.message;
+
+        setCoursesList((prev) =>
+          prev.map((course) => ({
             ...course,
-            groups: NewGroups.filter(
-              (e) => e.group.split("-")[0] === course.name
+            groups: newGroups.filter(
+              (e) => e.group?.split("-")[0] === course.name
             ),
           }))
         );
+        setLoading(false);
       } catch (err) {
         console.error("Home Error: ", err);
       }
@@ -37,11 +41,14 @@ function Home() {
 
     fetchData();
   }, []);
+
+  if (loading) return <div className="loader"></div>;
+
   return (
-    <div className="">
+    <div>
       <div className="header flex w-[90%] m-[auto] my-4 items-start justify-center">
-        <img src={logo} alt="" className="size-[110px]" />
-        <img src={text} alt="" className=" w-[300px] m-auto " />
+        <img src={logo} alt="Logo" className="size-[110px]" />
+        <img src={text} alt="text" className="w-[300px] m-auto" />
       </div>
       <div className="courses w-[90%] justify-between m-[auto] flex-wrap gap-8 flex pb-8">
         {coursesList.map((e) => (
@@ -51,4 +58,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

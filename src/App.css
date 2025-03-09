@@ -1,0 +1,19 @@
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 50px;
+  animation: l1 1s linear infinite alternate;
+}
+
+.loader:before {
+  content: "Loading...";
+}
+
+@keyframes l1 {
+  to {
+    opacity: 0;
+  }
+}

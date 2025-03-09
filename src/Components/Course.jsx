@@ -8,10 +8,10 @@ function Course({ logo, groups }) {
     >
       <img src={logo} alt="Course Logo" />
       <div className="groups w-full flex flex-col mb-10 justify-center uppercase items-center">
-        {groups.map((group, index) => (
+        {groups.map((group, i) => (
           <Link
             to={`/scoreboard/${group.group}`}
-            key={index}
+            key={i}
             className="border border-gray-300 rounded-2xl m-2 p-2 w-[95%] flex justify-center shadow-[0_2px_10px_#8c744a] hover:bg-[#700608]"
           >
             <p>Group {group.group}</p>

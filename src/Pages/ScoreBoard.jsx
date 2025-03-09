@@ -5,7 +5,7 @@ import PSTicket from "../assets/ps-ticket-b750758c.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 function ScoreBoard() {
   const [board, setBoard] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,7 @@ function ScoreBoard() {
       <div className="fixed inset-0 flex items-center justify-center text-white text-5xl font-bold">
         <div className="absolute inset-0 bg-cover bg-center bg-[url('/cover.png')] blur"></div>
 
-        <div className="loader relative z-10 animate-pulse">Loading...</div>
+        <div className="loader relative animate-pulse">Loading...</div>
       </div>
     );
   if (board.length === 0) {
@@ -108,6 +108,14 @@ function ScoreBoard() {
               </div>
             </div>
           ))}
+      </div>
+      <div className="goBack">
+        <Link
+          to={"/"}
+          className=" relative text-2xl mt-[50px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
+        >
+          GoBack
+        </Link>
       </div>
     </div>
   );

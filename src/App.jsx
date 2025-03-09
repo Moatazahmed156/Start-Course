@@ -2,12 +2,7 @@ import "./App.css";
 import Home from "./Pages/Home";
 import CoursePage from "./Pages/ScoreBoard";
 import NotFound from "./Pages/NotFound";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (

@@ -2,6 +2,7 @@ import CPPTicket from "../assets/cpp-ticket-981a7b5b.png";
 import CTicket from "../assets/c-ticket-95420b0e.png";
 import PYTicket from "../assets/python-ticket-a3446594.png";
 import PSTicket from "../assets/ps-ticket-b750758c.png";
+import { FaLeftLong } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -122,8 +123,9 @@ function ScoreBoard() {
       <div className="buttons flex justify-between w-[48%] max-md:w-full">
         <Link
           to={"/"}
-          className=" relative text-2xl block mt-[20px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
+          className=" relative flex gap-2 items-center justify-center text-center text-2xl block mt-[20px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
         >
+          <FaLeftLong />
           GoBack
         </Link>
         <button

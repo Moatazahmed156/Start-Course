@@ -1,19 +1,15 @@
 .loader {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  font-size: 50px;
-  animation: l1 1s linear infinite alternate;
+  animation: x 1s linear infinite alternate;
 }
 
-.loader:before {
-  content: "Loading...";
-}
-
-@keyframes l1 {
+@keyframes x {
   to {
     opacity: 0;
+  }
+}
+@media (max-width: 767px) {
+  .loader {
+    background-size: contain;
+    background-repeat: repeat-y;
   }
 }

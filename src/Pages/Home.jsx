@@ -42,15 +42,31 @@ function Home() {
     fetchData();
   }, []);
 
-  if (loading) return <div className="loader"></div>;
+  if (loading)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center text-white text-5xl font-bold">
+        <div className="absolute inset-0 bg-cover bg-center bg-[url('/cover.png')] blur"></div>
+
+        <div className="loader relative z-10 animate-pulse">Loading...</div>
+      </div>
+    );
 
   return (
-    <div>
-      <div className="header flex w-[90%] m-[auto] my-4 items-start justify-center">
-        <img src={logo} alt="Logo" className="size-[110px]" />
-        <img src={text} alt="text" className="w-[300px] m-auto" />
+    <div className="bg-[url('/cover.png')] bg-cover relative bg-center bg-cover bg-repeat-y max-md:bg-contain ">
+      <div class="absolute inset-0 backdrop-blur-md "></div>
+      <div className="header relative flex w-[90%] m-[auto] py-4 items-start justify-center ">
+        <img
+          src={logo}
+          alt="Logo"
+          className="size-[110px] max-md:size-[80px]"
+        />
+        <img
+          src={text}
+          alt="text"
+          className="w-[420px] m-auto relative left-[-52px] max-md:w-[280px] max-md:left-[-40px] "
+        />
       </div>
-      <div className="courses w-[90%] justify-between m-[auto] flex-wrap gap-8 flex pb-8">
+      <div className="courses relative w-[90%] justify-between items-center m-[auto] flex-wrap gap-8 flex pb-8 max-md:flex-col">
         {coursesList.map((e) => (
           <Course logo={e.logo} groups={e.groups} key={e.name} />
         ))}

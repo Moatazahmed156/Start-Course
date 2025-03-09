@@ -10,6 +10,7 @@ function ScoreBoard() {
   const [board, setBoard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [Score, setScore] = useState([]);
+  const [ShowAll, setShowAll] = useState(false);
   const { groupName } = useParams();
   const tickets = {
     CPP: CPPTicket,
@@ -67,10 +68,21 @@ function ScoreBoard() {
   if (board.length === 0) {
     return <Navigate to={"*"} replace />;
   }
+  function restofData() {
+    setShowAll(true);
+    document.getElementById("RM").style.display = "none";
+    document.getElementById("RL").style.display = "block";
+  }
+  function LimitedData() {
+    setShowAll(false);
+    document.getElementById("RM").style.display = "block";
+    document.getElementById("RL").style.display = "none";
+  }
+  let ShowenData = board.sort((a, b) => b.Score - a.Score);
 
   return (
     <div className="bg-[url('/cover.png')] relative bg-repeat-y max-md:bg-contain p-6 flex flex-col font-bold text-xl text-white items-center w-full min-h-[105vh] bg-contain bg-repeat-y">
-      <div class="absolute inset-0 backdrop-blur-md "></div>
+      <div className="absolute inset-0 backdrop-blur-md "></div>
 
       <div className="flex relative justify-between p-4 w-[48%] items-center border border-2 border-gray-300 rounded-2xl shadow-[0_8px_40px_#8c744a] max-md:w-full">
         <img
@@ -92,30 +104,42 @@ function ScoreBoard() {
         />
       </div>
       <div className="board relative w-[48%] max-md:w-full">
-        {board
-          .sort((a, b) => b.Score - a.Score)
-          .map((e, i) => (
-            <div key={i}>
-              <p className="size-8 border border-1 border-[#909b9e] rounded-[60%] shadow-[0_1px_5px_#006499] relative top-[20px] bg-[#8c744a] right-[15px] flex items-center justify-center text-sm">
-                {i + 1}
-              </p>
-              <div
-                className="flex w-full font-bold justify-between border border-gray-300 rounded-xl mb-2 p-4 shadow-[0_2px_10px_#8c744a] max-md:text-sm"
-                key={i}
-              >
-                <p>{e.name.split(" ").slice(0, 2).join(" ")}</p>
-                <p>{Score[i]}</p>
-              </div>
+        {(ShowAll ? ShowenData : ShowenData.slice(0, 5)).map((e, i) => (
+          <div key={i}>
+            <p className="size-8 border border-1 border-[#909b9e] rounded-[60%] shadow-[0_1px_5px_#006499] relative top-[20px] bg-[#8c744a] right-[15px] flex items-center justify-center text-sm">
+              {i + 1}
+            </p>
+            <div
+              className="flex w-full font-bold justify-between border border-gray-300 rounded-xl mb-2 p-4 shadow-[0_2px_10px_#8c744a] max-md:text-sm"
+              key={i}
+            >
+              <p>{e.name.split(" ").slice(0, 2).join(" ")}</p>
+              <p>{Score[i]}</p>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
-      <div className="goBack">
+      <div className="buttons flex justify-between w-[48%] max-md:w-full">
         <Link
           to={"/"}
-          className=" relative text-2xl mt-[50px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
+          className=" relative text-2xl block mt-[20px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
         >
           GoBack
         </Link>
+        <button
+          id="RM"
+          className="relative text-2xl block mt-[20px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
+          onClick={restofData}
+        >
+          Read More
+        </button>
+        <button
+          id="RL"
+          className="hidden relative text-2xl mt-[20px] border border-gray-300 shadow-[0_2px_10px_#8c744a] rounded text-white font-bold px-4 py-2 hover:bg-[#700608]"
+          onClick={LimitedData}
+        >
+          Read Less
+        </button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <div className="bg-[url('/cover.png')] bg-cover relative bg-center bg-cover bg-repeat-y max-md:bg-contain ">
-      <div class="absolute inset-0 backdrop-blur-md "></div>
+      <div className="absolute inset-0 backdrop-blur-md "></div>
       <div className="content relative flex flex-col gap-4 items-center justify-center min-h-[100vh] font-bold">
         <h1 className="text-5xl text-center text-white max-md:text-4xl">
           NOT FOUND😔

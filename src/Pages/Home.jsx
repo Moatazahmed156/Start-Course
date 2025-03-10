@@ -53,7 +53,7 @@ function Home() {
 
   return (
     <div className="bg-[url('/cover.png')] bg-cover relative bg-center bg-cover bg-repeat-y max-md:bg-contain ">
-      <div class="absolute inset-0 backdrop-blur-md "></div>
+      <div className="absolute inset-0 backdrop-blur-md "></div>
       <div className="header relative flex w-[90%] m-[auto] py-4 items-start justify-center ">
         <img
           src={logo}
